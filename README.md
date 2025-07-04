@@ -27,33 +27,37 @@
 
 ---
 
+## Структура проекта
+
+```
 uav-rag/
 │
 ├── data/
 │   ├── raw/                # Сырые данные (PDF, .txt, и т.п.)
 │   └── processed/          # Тексты после разбивки на чанки
 │
-├── embeddings/             # Векторная база 
+├── embeddings/             # Векторная база (например, Chroma или FAISS)
 │
 ├── bot/                    # Код Telegram-бота
 │   └── bot.py
 │
 ├── rag_backend/            # Код RAG (Retriever + Generator)
-│   ├── embedder.py
-│   ├── retriever.py
-│   └── generator.py
+│   ├── embedder.py         # Эмбеддинги (sentence-transformers или др.)
+│   ├── retriever.py        # Поиск по векторной базе
+│   └── generator.py        # Генерация ответа через LLM
 │
-├── airflow/                # DAG-и для Airflow (потом)
+├── airflow/                # DAG-и для Airflow (планирование задач)
 │
-├── mlflow_logs/            # Каталог для логов MLflow
+├── mlflow_logs/            # Логи и модели, отслеживаемые через MLflow
 │
-├── scripts/                # Разовые скрипты (парсинг, embedding и т.п.)
-│   ├── parse_pdf.py
-│   ├── split_and_embed.py
-│   └── build_vector_store.py
+├── scripts/                # Разовые скрипты (парсинг, эмбеддинг, загрузка)
+│   ├── parse_pdf.py        # Извлечение текста из PDF
+│   ├── split_and_embed.py  # Разбиение текста и эмбеддинг
+│   └── build_vector_store.py # Загрузка эмбеддингов в базу
 │
-├── Dockerfile
-├── docker-compose.yml
-├── .gitignore
-├── requirements.txt
-└── README.md   
+├── Dockerfile              # Контейнеризация
+├── docker-compose.yml      # Оркестрация сервисов
+├── .gitignore              # Исключения для Git
+├── requirements.txt        # Зависимости проекта
+└── README.md               # Описание проекта
+```

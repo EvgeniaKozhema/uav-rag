@@ -24,3 +24,36 @@
 - Показывает источник информации (chunk из документа)
 - Дообучается под твои статьи или терминологию
 - Интерактивный Telegram-бот с понятным UX
+
+---
+
+uav-rag/
+│
+├── data/
+│   ├── raw/                # Сырые данные (PDF, .txt, и т.п.)
+│   └── processed/          # Тексты после разбивки на чанки
+│
+├── embeddings/             # Векторная база 
+│
+├── bot/                    # Код Telegram-бота
+│   └── bot.py
+│
+├── rag_backend/            # Код RAG (Retriever + Generator)
+│   ├── embedder.py
+│   ├── retriever.py
+│   └── generator.py
+│
+├── airflow/                # DAG-и для Airflow (потом)
+│
+├── mlflow_logs/            # Каталог для логов MLflow
+│
+├── scripts/                # Разовые скрипты (парсинг, embedding и т.п.)
+│   ├── parse_pdf.py
+│   ├── split_and_embed.py
+│   └── build_vector_store.py
+│
+├── Dockerfile
+├── docker-compose.yml
+├── .gitignore
+├── requirements.txt
+└── README.md   

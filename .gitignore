@@ -1,0 +1,17 @@
+
+
+# Виртуальное окружение
+venv/
+
+# Кеши Pythoncd
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# PyCharm
+.idea/
+
+# Системные файлы
+.DS_Store

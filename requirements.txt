@@ -1,0 +1,36 @@
+# === Core NLP & Embeddings ===
+langchain>=0.1.0
+chromadb>=0.4.14
+sentence-transformers>=2.2.2
+
+# === LLM и дообучение (LoRA, PEFT) ===
+transformers>=4.40.0
+datasets>=2.18.0
+accelerate>=0.27.2
+peft>=0.10.0
+bitsandbytes>=0.43.0  # для quantization (если используешь)
+scipy>=1.11.0
+
+# === Telegram Bot ===
+python-telegram-bot>=20.0
+# или альтернативно:
+# aiogram>=3.0.0
+
+# === PDF / HTML Parsing ===
+pymupdf>=1.23.0
+beautifulsoup4>=4.12.0
+trafilatura>=1.6.1
+
+# === MLflow for experiment tracking ===
+mlflow>=2.11.1
+
+# === Общие утилиты ===
+tqdm>=4.66.0
+numpy>=1.25.0
+pandas>=2.0.0
+
+# === Jupyter ===
+notebook>=7.0.0
+
+# === (На следующем этапе) Airflow ===
+# apache-airflow==2.9.1  # Установи позже вручную, если решишь использовать

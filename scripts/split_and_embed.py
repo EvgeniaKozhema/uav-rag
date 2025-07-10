@@ -1,5 +1,5 @@
 import os
-import json
+import shutil
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
@@ -15,7 +15,7 @@ text_splitter = RecursiveCharacterTextSplitter(
 )
 
 embedding_model = HuggingFaceEmbeddings(
-    model_name="sentence-transformers/all-MiniLM-L6-v2",
+    model_name="intfloat/multilingual-e5-base",
     model_kwargs={"device": "cpu"},
     encode_kwargs={"normalize_embeddings": True}
 )
@@ -36,13 +36,13 @@ def load_documents():
 
         for idx, chunk in enumerate(chunks):
             documents.append({
-                'text':chunk,
-                'metadata':{'sourse':filename, 'chunk_id':idx}
+                'text': chunk,
+                'metadata': {'source': filename, 'chunk_id': idx}
             })
     return documents
 
 def build_vectorstore(documents):
-    texts = [doc['text'] for doc in documents]
+    texts = [f"passage: {doc['text']}" for doc in documents]
     metadatas = [doc['metadata'] for doc in documents]
 
     vectorstore = Chroma.from_texts(
@@ -54,11 +54,11 @@ def build_vectorstore(documents):
     vectorstore.persist()
 
 def main():
+    if os.path.exists(CHROMA_DIR):
+        shutil.rmtree(CHROMA_DIR)
+
     documents = load_documents()
     build_vectorstore(documents)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
-
-
-
